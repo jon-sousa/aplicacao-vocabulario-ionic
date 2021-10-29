@@ -1,3 +1,51 @@
+// slides.component.css
+@import '~swiper/swiper-bundle.min';
+@import '~@ionic/angular/css/ionic-swiper';
+
+.swiper-container{
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-slide{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+ion-grid {
+  text-align: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  background-color: blue;
+}
+
+ion-list{
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+}
+
+ion-list ion-card{
+  width: 100%;
+}
+
+.lista-de-palavras{
+  display: flex !important;
+  flex-direction: column !important;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.lista-de-palavras li{
+  text-decoration: none;
+}
+
 #container {
   text-align: center;
 
@@ -5,7 +53,6 @@
   left: 0;
   right: 0;
   top: 50%;
-  transform: translateY(-50%);
 }
 
 #container strong {

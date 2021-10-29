@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Blank
+      Jon
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -13,8 +13,61 @@
     </ion-toolbar>
   </ion-header>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+  <swiper #swiper [config]="config"
+  (swiper)="onSwiper($event)"
+  (slideChange)="onSlideChange()">
+    <ng-template swiperSlide> 
+      <form [formGroup]="palavraForm" (ngSubmit)="onSubmit()">
+        <ion-item>
+          <ion-label position="floating">Palavra <ion-text color="danger">*</ion-text></ion-label>
+          <ion-input required formControlName="palavra" type="text"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Definicao <ion-text color="danger"></ion-text></ion-label>
+          <ion-input formControlName="definicao" type="text"></ion-input>
+        </ion-item>
+        <ion-button block color="primary" type="submit" [disabled]="palavraForm.invalid">
+          Cadastrar
+        </ion-button>
+      </form>
+    </ng-template>
+
+    <ng-template swiperSlide>      
+      <ion-list>
+        <ion-item-sliding *ngFor='let palavra of palavras'> 
+          <ion-item>
+            <ion-card>
+              <ion-card-header>
+                <ion-card-title>{{palavra?.palavra}}</ion-card-title>
+              </ion-card-header>
+              <ion-card-content style="display:flex; width: 100%;" class="ion-justify-content-between">
+                <p>{{palavra?.definicao}}</p>
+                <ion-button slot="icon-only" size="small" color="danger" fill="clear" (click)="apagarPalavra(palavra)">
+                  <ion-icon name="trash-outline"></ion-icon>
+                </ion-button>
+              </ion-card-content>
+            </ion-card>
+          </ion-item>
+        </ion-item-sliding>
+      </ion-list>
+    </ng-template>
+
+    <ng-template  swiperSlide>
+      <ion-list *ngIf="!!erros?.length">
+        <ion-item-sliding>
+          <ion-item *ngFor="let erro of erros">
+              <ion-card>
+              <ion-card-header>
+                <ion-card-title>{{erro}}</ion-card-title>
+              </ion-card-header>
+              <ion-card-content>
+                {{erro}}
+              </ion-card-content>
+            </ion-card>
+          </ion-item>
+        </ion-item-sliding>
+      </ion-list>
+    </ng-template>
+
+  </swiper>
 </ion-content>
